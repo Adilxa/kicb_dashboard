@@ -1,0 +1,30 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "button": "Click me!"
+  },
+  "ExampleScreen": {
+    "title": "Example screen",
+    "description": "This is an example screen. You can find it in the 'components/screens' folder."
+  },
+  "LocaleSwitcher": {
+    "en": "English",
+    "ru": "Русский",
+    "label": "Language"
+  },
+  "ThemeSwitcher": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "User": {
+    "logout": "Logout",
+    "profile": "Profile"
+  },
+  "Aside": {
+    "home": "Home",
+    "nalogs": "Taxes",
+    "portal": "Portal",
+    "fond": "Social.Fund"
+  }
+}

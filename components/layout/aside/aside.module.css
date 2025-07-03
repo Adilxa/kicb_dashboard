@@ -1,0 +1,79 @@
+.wrapper {
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+  min-width: 80px;
+  height: 100dvh;
+  padding: 1rem;
+  border-right: 1px solid #E4E4E7;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+.wrapper h1 {
+  height: 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  white-space: nowrap;
+}
+.wrapper section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.wrapper section .btn, .wrapper section .active {
+  width: 100%;
+  height: 44px;
+  padding: 0 0.75rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  justify-content: space-between;
+}
+.wrapper section .btn img, .wrapper section .active img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.wrapper section .btn h5, .wrapper section .active h5 {
+  margin-left: 0.75rem;
+  font-size: 16px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.wrapper section .btn:nth-last-child(1) h5, .wrapper section .active:nth-last-child(1) h5 {
+  white-space: wrap;
+}
+.wrapper section .active {
+  background-color: #18181B;
+  color: #fff;
+}
+.wrapper section .active img {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+.wrapper section .btn:hover {
+  background-color: #f4f4f5;
+}
+.wrapper section .btn:hover h5 {
+  color: #0a0a0a;
+}
+.wrapper section .btn img {
+  filter: brightness(0) saturate(0%) invert(100%) sepia(0%) saturate(0%) hue-rotate(1deg) brightness(0%) contrast(0%);
+}
+.wrapper:hover {
+  width: 300px;
+}
+.wrapper:hover section .btn h5, .wrapper:hover section .active h5 {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/*# sourceMappingURL=aside.module.css.map */

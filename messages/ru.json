@@ -1,0 +1,30 @@
+{
+  "HomePage": {
+    "title": "Привет, мир!",
+    "button": "Нажми меня!"
+  },
+  "ExampleScreen": {
+    "title": "Пример экрана",
+    "description": "Это пример экрана. Вы можете найти его в папке 'components/screens'."
+  },
+  "LocaleSwitcher": {
+    "en": "English",
+    "ru": "Русский",
+    "label": "Язык"
+  },
+  "ThemeSwitcher": {
+    "light": "Светлая",
+    "dark": "Темная",
+    "system": "Системная"
+  },
+  "User": {
+    "logout": "Выйти",
+    "profile": "Профиль"
+  },
+  "Aside": {
+    "home": "Главная",
+    "nalogs": "Налоги",
+    "portal": "Портал",
+    "fond": "Соц.Фонд"
+  }
+}
