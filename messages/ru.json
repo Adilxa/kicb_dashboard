@@ -1,6 +1,6 @@
 {
   "HomePage": {
-    "title": "Привет, мир!",
+    "title": "Привет мир!",
     "button": "Нажми меня!"
   },
   "ExampleScreen": {
@@ -14,8 +14,8 @@
   },
   "ThemeSwitcher": {
     "light": "Светлая",
-    "dark": "Темная",
-    "system": "Системная"
+    "dark": "Тёмная",
+    "system": "Система"
   },
   "User": {
     "logout": "Выйти",
@@ -26,5 +26,48 @@
     "nalogs": "Налоги",
     "portal": "Портал",
     "fond": "Соц.Фонд"
+  },
+  "depositChart": {
+    "title": "Диаграмма депозитов и кредитов",
+    "year": "Год",
+    "credits": "Кредиты",
+    "deposits": "Депозиты",
+    "buttons": {
+      "all": "Все",
+      "creditsOnly": "Только кредиты",
+      "depositsOnly": "Только депозиты"
+    },
+    "tooltip": {
+      "year": "Год"
+    }
+  },
+  "clientDistributionChart": {
+    "title": "Диаграмма распределения клиентов",
+    "year": "Год",
+    "juridical": "Юридические лица",
+    "physical": "Физические лица",
+    "buttons": {
+      "allTypes": "Все типы",
+      "juridicalOnly": "Юридические лица",
+      "physicalOnly": "Физические лица",
+      "showPoints": "Показать точки",
+      "hidePoints": "Скрыть точки",
+      "show": "Показать",
+      "hide": "Скрыть"
+    },
+    "tooltip": {
+      "year": "Год"
+    }
+  },
+  "RegionalChart": {
+    "all": "Все",
+    "allRegions": "Все регионы",
+    "summary": "Сводка",
+    "part": "Часть",
+    "clients": "Клиент"
+  },
+  "carousel": {
+    "buy": "Купить",
+    "sell": "Продать"
   }
 }

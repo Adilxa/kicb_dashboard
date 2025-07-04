@@ -1,6 +1,5 @@
 import React from 'react';
 import Container from '@/components/ui/container';
-import CurrencyCarousel from '@/components/ui/currency-carousel';
 import DepositChart from '@/components/ui/deposit-chart';
 import DistrubutionChart from '@/components/ui/distrubution-chart';
 import RegionalClientsChart from '@/components/ui/regional-chart';
@@ -21,10 +20,6 @@ const DashboardScreen = () => {
           <div className='col-span-1 w-full sm:col-span-2 lg:col-span-1'>
             <RegionalClientsChart />
           </div>
-        </div>
-
-        <div className='w-full'>
-          <CurrencyCarousel />
         </div>
       </div>
     </Container>

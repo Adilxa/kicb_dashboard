@@ -1,5 +1,3 @@
-import ExampleScreen from '@/components/screens/example-screen';
-
 export default function ExamplePage() {
-  return <ExampleScreen />;
+  return <div></div>;
 }

@@ -6,7 +6,7 @@ interface IProps extends PropsWithChildren {
 }
 
 const Container: FC<IProps> = ({ className, children }) => {
-  return <div className={clsx('mx-auto w-full px-12', className)}>{children}</div>;
+  return <div className={clsx('mx-auto w-full px-6 sm:px-12', className)}>{children}</div>;
 };
 
 export default Container;

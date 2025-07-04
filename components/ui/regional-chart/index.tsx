@@ -1,7 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import { LoaderCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import React, { useEffect, useState } from 'react';
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 interface RegionData {
   name: string;
@@ -29,6 +32,10 @@ const RegionalClientsChart = () => {
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
   const [showPercentages, setShowPercentages] = useState(true);
 
+  const t = useTranslations('RegionalChart');
+
+  const isMobile = useMediaQuery('(max-width: 1200px)');
+
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   const CustomTooltip = ({ active, payload }: TooltipProps) => {
@@ -37,12 +44,14 @@ const RegionalClientsChart = () => {
       const percentage = ((data.value / total) * 100).toFixed(1);
 
       return (
-        <div className='rounded-lg border bg-white p-3 shadow-lg dark:border-gray-300 dark:bg-gray-900'>
+        <div className='rounded-lg border bg-white p-2 text-xs shadow-lg dark:border-gray-300 dark:bg-gray-900 sm:p-3 sm:text-sm'>
           <p className='font-medium text-gray-900 dark:text-gray-100'>{data.name}</p>
-          <p className='text-sm' style={{ color: data.color }}>
-            Клиентов: {data.value.toLocaleString()}
+          <p className='text-xs sm:text-sm' style={{ color: data.color }}>
+            {t('clients')}: {data.value.toLocaleString()}
           </p>
-          <p className='text-sm text-gray-600 dark:text-gray-400'>Доля: {percentage}%</p>
+          <p className='text-xs text-gray-600 dark:text-gray-400 sm:text-sm'>
+            {t('part')}: {percentage}%
+          </p>
         </div>
       );
     }
@@ -59,38 +68,56 @@ const RegionalClientsChart = () => {
     return data;
   };
 
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const interval = setTimeout(() => setLoading(false), 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isMobile]);
+
+  if (loading)
+    return (
+      <div className={'flex h-full w-full animate-spin items-center justify-center'}>
+        <LoaderCircle />
+      </div>
+    );
   return (
-    <div className='h-full w-full rounded-lg bg-white p-6 shadow dark:bg-gray-900'>
-      <div className='mb-6'>
-        <div className='mb-4 flex flex-wrap gap-2'>
+    <div className='h-full w-full rounded-lg bg-white p-3 shadow dark:bg-gray-900 sm:p-4 lg:p-6'>
+      <div className='mb-3 sm:mb-6'>
+        <div className='mb-2 flex flex-wrap gap-1 sm:mb-4 sm:gap-2'>
           <button
             onClick={() => setSelectedRegion(null)}
-            className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${
+            className={`rounded-lg px-2 py-1 text-xs font-medium transition-all sm:px-3 sm:py-2 sm:text-sm lg:px-4 ${
               selectedRegion === null
                 ? 'bg-purple-600 text-white shadow-lg'
                 : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700'
             }`}
           >
-            Все регионы
+            <span className='block sm:hidden'>{t('all')}</span>
+            <span className='hidden sm:block'>{t('allRegions')}</span>
           </button>
           <button
             onClick={() => setShowPercentages(!showPercentages)}
-            className='rounded-lg bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 transition-all hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700'
+            className='rounded-lg bg-gray-200 px-2 py-1 text-xs font-medium text-gray-800 transition-all hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 sm:px-3 sm:py-2 sm:text-sm lg:px-4'
           >
-            {showPercentages ? 'Показать количество' : 'Показать проценты'}
+            <span className='block sm:hidden'>{showPercentages ? '%→№' : '№→%'}</span>
+            <span className='hidden sm:block'>{showPercentages ? '%→№' : '№→%'}</span>
           </button>
         </div>
       </div>
 
-      <div className='h-96'>
+      <div className='h-48 sm:h-64 lg:h-80 xl:h-96'>
         <ResponsiveContainer width='100%' height='100%'>
           <PieChart>
             <Pie
               data={getVisibleData()}
               cx='50%'
               cy='50%'
-              innerRadius={80}
-              outerRadius={140}
+              innerRadius={window.innerWidth < 640 ? 40 : window.innerWidth < 1024 ? 60 : 80}
+              outerRadius={window.innerWidth < 640 ? 80 : window.innerWidth < 1024 ? 110 : 140}
               paddingAngle={2}
               dataKey='value'
               animationBegin={0}
@@ -108,30 +135,31 @@ const RegionalClientsChart = () => {
             </Pie>
             <Tooltip content={<CustomTooltip />} />
 
-            {/* Центральный текст */}
             <text
               x='50%'
               y='45%'
               textAnchor='middle'
               dominantBaseline='middle'
-              className='fill-gray-900 text-xl font-bold dark:fill-white'
+              className='fill-gray-900 text-sm font-bold dark:fill-white sm:text-base lg:text-lg xl:text-xl'
             >
-              Итого
+              {t('summary')}
             </text>
             <text
               x='50%'
               y='55%'
               textAnchor='middle'
               dominantBaseline='middle'
-              className='fill-gray-600 text-lg font-semibold dark:fill-gray-300'
+              className='fill-gray-600 text-xs font-semibold dark:fill-gray-300 sm:text-sm lg:text-base xl:text-lg'
             >
-              {total.toLocaleString()} +
+              {window.innerWidth < 640
+                ? `${Math.round(total / 1000)}K+`
+                : `${total.toLocaleString()}+`}
             </text>
           </PieChart>
         </ResponsiveContainer>
       </div>
 
-      <div className='mt-4 grid grid-cols-2 gap-2 md:grid-cols-4'>
+      <div className='mt-2 flex flex-wrap gap-1 sm:mt-4 sm:gap-2'>
         {data.map((entry, index) => {
           const percentage = ((entry.value / total) * 100).toFixed(1);
           const isSelected = selectedRegion === entry.name;
@@ -139,7 +167,7 @@ const RegionalClientsChart = () => {
           return (
             <div
               key={index}
-              className={`flex cursor-pointer items-center gap-2 rounded-lg p-2 transition-all ${
+              className={`flex cursor-pointer items-center gap-1 rounded-lg p-1 transition-all sm:gap-2 sm:p-2 ${
                 isSelected
                   ? 'bg-gray-300 shadow-md dark:bg-gray-700'
                   : 'hover:bg-gray-200 dark:hover:bg-gray-800'
@@ -147,15 +175,19 @@ const RegionalClientsChart = () => {
               onClick={() => setSelectedRegion(isSelected ? null : entry.name)}
             >
               <div
-                className='h-3 w-3 flex-shrink-0 rounded-full'
+                className='h-2 w-2 flex-shrink-0 rounded-full sm:h-3 sm:w-3'
                 style={{ backgroundColor: entry.color }}
               />
               <div className='min-w-0 flex-1'>
-                <div className='truncate text-sm font-medium text-gray-900 dark:text-gray-100'>
+                <div className='truncate text-xs font-medium text-gray-900 dark:text-gray-100 sm:text-sm'>
                   {entry.name}
                 </div>
                 <div className='text-xs text-gray-600 dark:text-gray-400'>
-                  {showPercentages ? `${percentage}%` : entry.value.toLocaleString()}
+                  {showPercentages
+                    ? `${percentage}%`
+                    : window.innerWidth < 640
+                      ? `${Math.round(entry.value / 1000)}K`
+                      : entry.value.toLocaleString()}
                 </div>
               </div>
             </div>
