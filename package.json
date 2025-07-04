@@ -30,6 +30,7 @@
     "react-dom": "^18",
     "recharts": "^3.0.2",
     "sass": "^1.89.2",
+    "swiper": "^11.2.10",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"
   },

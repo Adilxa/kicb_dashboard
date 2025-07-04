@@ -9,7 +9,7 @@
   },
   "LocaleSwitcher": {
     "en": "English",
-    "ru": "Русский",
+    "ru": "Russian",
     "label": "Language"
   },
   "ThemeSwitcher": {
@@ -22,9 +22,52 @@
     "profile": "Profile"
   },
   "Aside": {
-    "home": "Home",
+    "home": "Main",
     "nalogs": "Taxes",
     "portal": "Portal",
-    "fond": "Social.Fund"
+    "fond": "Social Fund"
+  },
+  "depositChart": {
+    "title": "Deposits and credits chart",
+    "year": "Year",
+    "credits": "Credits",
+    "deposits": "Deposits",
+    "buttons": {
+      "all": "All",
+      "creditsOnly": "Only credits",
+      "depositsOnly": "Only deposits"
+    },
+    "tooltip": {
+      "year": "Year"
+    }
+  },
+  "clientDistributionChart": {
+    "title": "Client Distribution Chart",
+    "year": "Year",
+    "juridical": "Legal entities",
+    "physical": "Individuals",
+    "buttons": {
+      "allTypes": "All types",
+      "juridicalOnly": "Legal entities",
+      "physicalOnly": "Individuals",
+      "showPoints": "Show points",
+      "hidePoints": "Hide points",
+      "show": "Show",
+      "hide": "Hide"
+    },
+    "tooltip": {
+      "year": "Year"
+    }
+  },
+  "RegionalChart": {
+    "all": "All",
+    "allRegions": "All regions",
+    "summary": "Summary",
+    "part": "Part",
+    "clients": "Client"
+  },
+  "carousel": {
+    "buy": "Buy",
+    "sell": "Sell"
   }
 }

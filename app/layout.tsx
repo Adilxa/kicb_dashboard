@@ -26,8 +26,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <Provider>
             <DashboardLayoutComponent>
-              <Header />
-              <div className={'flex-1'}>{children}</div>
+              <div>{children}</div>
             </DashboardLayoutComponent>
           </Provider>
         </NextIntlClientProvider>
