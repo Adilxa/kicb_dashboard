@@ -5,13 +5,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-import style from './Aside.module.scss';
+import style from './aside.module.scss';
 
 function Aside() {
   const pathname = usePathname();
